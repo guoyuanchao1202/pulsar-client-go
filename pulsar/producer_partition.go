@@ -1211,6 +1211,7 @@ func (p *partitionProducer) updateMetaData(sr *sendRequest) {
 	}
 
 	sr.mm = p.genMetadata(sr.msg, int(sr.uncompressedSize), deliverAt)
+	sr.mm.SchemaVersion = sr.schemaVersion
 
 	sr.sendAsBatch = !p.options.DisableBatching &&
 		sr.msg.ReplicationClusters == nil &&
